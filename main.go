@@ -3,7 +3,6 @@ package gomq
 import (
 	"errors"
 	"fmt"
-	"log"
 
 	"github.com/streadway/amqp"
 )
@@ -91,7 +90,7 @@ func Consume(name string, action func(data string)) error {
 	}
 
 	for d := range msgs {
-		log.Printf("Received a message: %s", d.Body)
+		action(string(d.Body))
 	}
 	return nil
 }
