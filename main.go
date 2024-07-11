@@ -22,7 +22,7 @@ func Connect(user, pass, host, port string) error {
 	return nil
 }
 
-func CreateChannel(name string) error {
+func createChannel(name string) error {
 	if _qp == nil {
 		return errors.New("Disconnected")
 	}
@@ -55,7 +55,7 @@ func Publish(name, data string) error {
 		return errors.New("Disconnected")
 	}
 	if _ch == nil {
-		return errors.New("Channel Closed")
+		createChannel(name)
 	}
 	return _ch.Publish(
 		"",    // Exchange
@@ -73,7 +73,7 @@ func Consume(name string, action func(data string)) error {
 		return errors.New("Disconnected")
 	}
 	if _ch == nil {
-		return errors.New("Channel Closed")
+		createChannel(name)
 	}
 
 	msgs, err := _ch.Consume(

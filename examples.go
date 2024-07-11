@@ -7,7 +7,6 @@ func example() {
 	if err != nil {
 		panic(err)
 	}
-	CreateChannel("hello")
 	Publish("hello", "Hello, RabbitMQ World!")
 	Consume("hello", func(data string) {
 		fmt.Println(data)
