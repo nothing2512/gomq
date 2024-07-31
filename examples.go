@@ -3,7 +3,7 @@ package gomq
 import "fmt"
 
 func example() {
-	err := Connect("rabbitmq_user", "rabbitmq_password", "103.28.52.86", "5672")
+	err := Connect("rabbitmq_user", "rabbitmq_password", "0.0.0.0", "5672")
 	if err != nil {
 		panic(err)
 	}
